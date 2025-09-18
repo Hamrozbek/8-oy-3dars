@@ -1,0 +1,36 @@
+{
+  "students": [
+    {
+      "firstname": "Hamroz",
+      "lastname": "Nuriddinov",
+      "age": "20",
+      "study": "School",
+      "region": "Toshkent",
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "firstname": "Abdulla",
+      "lastname": "Sultonmurodov",
+      "age": "27",
+      "study": "Najot ta'lim",
+      "region": "Tashkent"
+    },
+    {
+      "id": "729c",
+      "firstname": "Jamshid",
+      "lastname": "Akramov",
+      "age": "20",
+      "study": "Najot ta'lim",
+      "region": "Fargona"
+    },
+    {
+      "id": "b92b",
+      "firstname": "Sarvar",
+      "lastname": "Azamov",
+      "age": "19",
+      "study": "Najot ta'lim",
+      "region": "Surxondaryo"
+    }
+  ]
+}
