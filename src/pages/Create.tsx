@@ -22,15 +22,15 @@ const Create = () => {
   useQuery<StudentType, Error>({
     queryKey: ["student", id],
     queryFn: () =>
-      instance().get<StudentType>(`/students/${id}`).then(res => res.data),
-    enabled: !!id
+      instance().get<StudentType>(`/students/${id}`).then(res => res.data)
+    // enabled: !!id
   })
 
   const { data: studentData } = useQuery<StudentType, Error>({
     queryKey: ["student", id],
     queryFn: () =>
-      instance().get<StudentType>(`/students/${id}`).then(res => res.data),
-    enabled: !!id
+      instance().get<StudentType>(`/students/${id}`).then(res => res.data)
+    // enabled: !!id
   })
 
   useEffect(() => {
