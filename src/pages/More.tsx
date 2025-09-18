@@ -1,17 +1,41 @@
 import { Button } from "@/components/ui/button"
 import { instance } from "@/hooks/instance"
-import { useQuery } from "@tanstack/react-query"
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
 import { ArrowLeft } from "lucide-react"
 import { useNavigate, useParams } from "react-router-dom"
+import { toast } from "sonner"
 
 const More = () => {
   const { id } = useParams()
   const navigate = useNavigate()
+  const queryClient = useQueryClient()
 
   const { data: studentMore = {} } = useQuery({
     queryKey: ['student-more', id],
     queryFn: () => instance().get(`/students/${id}`).then(res => res.data)
   })
+
+  const deleteMutation = useMutation({
+    mutationFn: () => instance().delete(`/students/${id}`),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['students'] })
+      toast.success("Student o'chib ketdi", {
+        position: "top-center",
+      })
+      navigate(-1)
+    },
+    onError: () => {
+      toast.error("Xatolik bor o'chirishda", {
+        position: "top-center",
+      })
+    },
+  })
+
+  const handleDelete = () => {
+    if (confirm("Rostdan ham o'chirmoqchimisiz?")) {
+      deleteMutation.mutate()
+    }
+  }
 
   return (
     <div className="bg-slate-900">
@@ -23,7 +47,7 @@ const More = () => {
           </div>
           <div className="flex gap-3">
             <Button onClick={() => navigate(`/create/${id}`)} className="bg-yellow-600 hover:bg-yellow-500 text-white">Edit</Button>
-            <Button className="bg-red-700 hover:bg-red-600 text-white">Delete</Button>
+            <Button onClick={handleDelete} className="bg-red-700 hover:bg-red-600 text-white">Delete</Button>
           </div>
         </div>
 
